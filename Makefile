@@ -5,10 +5,10 @@ CFLAGS = $(DEBUG) -Wall -Wshadow -Wunreachable-code \
 		-Wredundant-decls -Wmissing-declarations -Wold-style-definition \
 		-Wmissing-prototypes
 
-clox: main.o chunk.o memory.o debug.o value.o
+run: main.o chunk.o memory.o debug.o value.o
 	@$(CC) $(CFLAGS) -o $@ $^
 	@chmod u+rx $@
-	@./clox
+	@./run
 
 main.o: main.c
 	@$(CC) $(CFLAGS) -c $<
