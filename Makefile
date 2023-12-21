@@ -26,4 +26,4 @@ value.o: value.c value.h
 	@$(CC) $(CFLAGS) -c $<
 
 clean cls:
-	-rm -f clox *.o *~ \#*
+	-rm -f run *.o *~ \#*
