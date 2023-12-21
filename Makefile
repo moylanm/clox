@@ -5,7 +5,7 @@ CFLAGS = $(DEBUG) -Wall -Wshadow -Wunreachable-code \
 		-Wredundant-decls -Wmissing-declarations -Wold-style-definition \
 		-Wmissing-prototypes
 
-clox: main.o chunk.o memory.o debug.o
+clox: main.o chunk.o memory.o debug.o value.o
 	@$(CC) $(CFLAGS) -o $@ $^
 	@chmod u+rx $@
 	@./clox
@@ -20,6 +20,9 @@ memory.o: memory.c memory.h
 	@$(CC) $(CFLAGS) -c $<
 
 debug.o: debug.c debug.h
+	@$(CC) $(CFLAGS) -c $<
+
+value.o: value.c value.h
 	@$(CC) $(CFLAGS) -c $<
 
 clean cls:
