@@ -4,10 +4,10 @@ DEBUG = -g
 CFLAGS = $(DEBUG) -Wall -Wshadow -Wunreachable-code \
 		-Wredundant-decls -Wmissing-declarations -Wold-style-definition
 
-run: main.o chunk.o memory.o debug.o value.o vm.o
+clox: main.o chunk.o memory.o debug.o value.o vm.o
 	@$(CC) $(CFLAGS) -o $@ $^
 	@chmod u+rx $@
-	@./run
+	@./$@
 
 main.o: main.c
 	@$(CC) $(CFLAGS) -c $<
@@ -28,4 +28,4 @@ vm.o: vm.c vm.h
 	@$(CC) $(CFLAGS) -c $<
 
 clean cls:
-	-rm -f run *.o *~ \#*
+	-rm -f clox *.o *~ \#*
