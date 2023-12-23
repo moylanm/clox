@@ -2,8 +2,7 @@ CC = clang
 DEBUG = -g
 
 CFLAGS = $(DEBUG) -Wall -Wshadow -Wunreachable-code \
-		-Wredundant-decls -Wmissing-declarations -Wold-style-definition \
-		-Wmissing-prototypes
+		-Wredundant-decls -Wmissing-declarations -Wold-style-definition
 
 run: main.o chunk.o memory.o debug.o value.o vm.o
 	@$(CC) $(CFLAGS) -o $@ $^
