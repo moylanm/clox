@@ -12,7 +12,7 @@ OBJ := obj
 SOURCES := $(wildcard $(SRC)/*.c)
 OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
-$(PROJ): all
+run: all
 	@chmod u+rx $(PROJ)
 	@./$(PROJ)
 
