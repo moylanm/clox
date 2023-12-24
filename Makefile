@@ -9,8 +9,8 @@ PROJ := clox
 SRC := src
 OBJ := obj
 
-SOURCES = $(wildcard $(SRC)/*.c)
-OBJECTS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
+SOURCES := $(wildcard $(SRC)/*.c)
+OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
 $(PROJ): all
 	@chmod u+rx $(PROJ)
