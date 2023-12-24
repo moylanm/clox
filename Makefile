@@ -4,7 +4,7 @@ DEBUG = -g
 CFLAGS = $(DEBUG) -Wall -Wshadow -Wunreachable-code \
 		-Wredundant-decls -Wmissing-declarations -Wold-style-definition
 
-clox: main.o chunk.o memory.o debug.o value.o vm.o
+clox: main.o chunk.o memory.o debug.o value.o vm.o scanner.o compiler.o
 	@$(CC) $(CFLAGS) -o $@ $^
 	@chmod u+rx $@
 	@./$@
@@ -25,6 +25,12 @@ value.o: value.c value.h
 	@$(CC) $(CFLAGS) -c $<
 
 vm.o: vm.c vm.h
+	@$(CC) $(CFLAGS) -c $<
+
+scanner.o: scanner.c scanner.h
+	@$(CC) $(CFLAGS) -c $<
+
+compiler.o: compiler.c compiler.h
 	@$(CC) $(CFLAGS) -c $<
 
 clean cls:
