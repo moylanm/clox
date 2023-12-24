@@ -1,37 +1,26 @@
-CC = clang
-DEBUG = -g
+CC := clang
+DEBUG := -g
 
-CFLAGS = $(DEBUG) -Wall -Wshadow -Wunreachable-code \
+CFLAGS := $(DEBUG) -Wall -Wshadow -Wunreachable-code \
 		-Wredundant-decls -Wmissing-declarations -Wold-style-definition
 
-clox: main.o chunk.o memory.o debug.o value.o vm.o scanner.o compiler.o
-	@$(CC) $(CFLAGS) -o $@ $^
-	@chmod u+rx $@
-	@./$@
+PROJ := clox
 
-main.o: main.c
-	@$(CC) $(CFLAGS) -c $<
+SRC := src
+OBJ := obj
 
-chunk.o: chunk.c chunk.h
-	@$(CC) $(CFLAGS) -c $<
+SOURCES = $(wildcard $(SRC)/*.c)
+OBJECTS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
-memory.o: memory.c memory.h
-	@$(CC) $(CFLAGS) -c $<
+$(PROJ): all
+	@chmod u+rx $(PROJ)
+	@./$(PROJ)
 
-debug.o: debug.c debug.h
-	@$(CC) $(CFLAGS) -c $<
+all: $(OBJECTS)
+	@$(CC) $(CFLAGS) $^ -o $(PROJ)
 
-value.o: value.c value.h
-	@$(CC) $(CFLAGS) -c $<
-
-vm.o: vm.c vm.h
-	@$(CC) $(CFLAGS) -c $<
-
-scanner.o: scanner.c scanner.h
-	@$(CC) $(CFLAGS) -c $<
-
-compiler.o: compiler.c compiler.h
-	@$(CC) $(CFLAGS) -c $<
+$(OBJ)/%.o: $(SRC)/%.c
+	@$(CC) $(CFLAGS) -I$(SRC) -c $< -o $@
 
 clean cls:
-	-rm -f clox *.o *~ \#*
+	-rm -f $(OBJ)/*.o $(PROJ)
