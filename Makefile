@@ -14,7 +14,7 @@ OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
 run: all
 	@chmod u+rx $(PROJ)
-	@./$(PROJ)
+	@./$(PROJ) test.lox
 
 all: $(OBJECTS)
 	@$(CC) $(CFLAGS) $^ -o $(PROJ)
